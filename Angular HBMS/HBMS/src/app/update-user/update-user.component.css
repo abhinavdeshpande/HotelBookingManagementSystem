@@ -1,0 +1,26 @@
+form{
+	margin-left: 320px;
+	margin-top: 10px;
+}
+h2{
+    text-align: center;
+    color: cornflowerblue;
+	border-style: double;
+    border-width: 3px;
+    border-left-width: 10px;
+    border-right-width: 10px;
+    border-color: cadetblue;
+}
+
+#menu ul li a:hover{
+	background-color: white;
+	color:black;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+@media only screen and (max-width: 768px){
+	[class*="col-"]{
+		width: 100%;
+	}
+}

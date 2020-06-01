@@ -5,7 +5,6 @@ import { Parser } from '../parser';
 import { Booking } from '../Booking';
 import { Router } from '@angular/router';
 import { CustomerService } from '../customer.service';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-booking',
@@ -20,10 +19,10 @@ export class BookingComponent implements OnInit {
   checkin:string=''
   checkout:string=''
 
-  constructor(private router:Router, private customerService: CustomerService, public datepipe: DatePipe) { }
+  constructor(private router:Router, private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    
+    this.parser = history.state;
   }
 
   cal() {
@@ -60,7 +59,23 @@ export class BookingComponent implements OnInit {
     this.customerService.updateRoom(this.parser.room).subscribe(data => console.log(data), error => console.log(error));
     console.log(this.booking);
     this.booking = new Booking();
-    this.router.navigate(["customer"]);
+    alert("Room Booked Succesfully!!");
+    this.router.navigateByUrl('/customer',{state:this.parser.user});
+  }
+
+  history() {
+    this.parser=history.state;
+    this.router.navigateByUrl('/history',{state: this.parser.user});
+  }
+
+  homePage() {
+    this.parser=history.state;
+    this.router.navigateByUrl('/customer',{state: this.parser.user})
+  }
+
+  hotelPage() {
+    this.parser=history.state;
+    this.router.navigateByUrl('/viewHotel',{state: this.parser})
   }
 
 }
